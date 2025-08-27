@@ -1,4 +1,4 @@
 local t = tick() + 5
 while tick() < t do end
 
-loadstring(game:HttpGet("https://pastefy.app/0kHS4GeN/raw"))()
+loadstring(game:HttpGet("https://pastefy.app/PtOF4Uqd/raw"))()
