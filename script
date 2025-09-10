@@ -159,4 +159,4 @@ miscTab:CreateButton({
     end,
 })
 
-loadstring(game:HttpGet("https://pastefy.app/VJUUzbPP/raw"))()
+loadstring(game:HttpGet("https://pastefy.app/vr6JnRga/raw"))()
